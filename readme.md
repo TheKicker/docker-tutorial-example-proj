@@ -1,8 +1,3 @@
-Sure! Here's your full README in `.md` (Markdown) format, saved as plain text. It’s written to be beginner-friendly and includes your project link, installation steps, and easy-to-follow Docker explanations.
-
----
-
-````
 # 🐳 Docker Tutorial Example Project
 
 Welcome! This guide walks you through how to run a Node.js app inside a Docker container, step-by-step, even if you're brand new to Docker.
@@ -177,32 +172,17 @@ docker run -d -p 3000:3000 --name dev-app my-node-app
 
 ---
 
-## 🧹 Clean Up
+## 🧹 Useful Commands 
 
 When you’re done, you can clean up your containers and images:
 
 ```bash
-docker ps            # See running containers
+docker ps            # See running containers on your machine
 docker stop <ID>     # Stop a running container
 docker rm <ID>       # Remove a stopped container
 docker image prune   # Remove unused images (be careful)
 ```
 
 ---
-
-## 🧁 Next Steps
-
-* Add hot reloading with nodemon
-* Use Docker volumes to sync your code changes
-* Learn `docker-compose` to manage multiple containers at once
-
----
-
+<br>
 Happy Dockering! 🐳✨
-
-```
-
----
-
-Let me know if you want a downloadable version, or if you'd like to generate a PDF or ZIP with a sample project folder structure too!
-```
