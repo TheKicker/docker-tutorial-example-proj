@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Space Distances from ZIP</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 700px; margin: auto; }
+    h1, h3 { text-align: center; }
+    input { width: 100%; padding: 0.5rem; font-size: 1.1rem; }
+    button { margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1.1rem; }
+    .planet { margin-top: 1rem; padding: 1rem; background: #f0f0f0; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🪐 Space Distances from Your ZIP</h1>
+  <input id="zip" type="text" placeholder="Enter ZIP code" maxlength="5"/>
+  <button onclick="checkDistance()">Check</button>
+
+  <div id="results"></div>
+
+  <script>
+    async function checkDistance() {
+    const zip = document.getElementById('zip').value.trim();
+    const res = await fetch('/zip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ zip })
+    });
+
+    const data = await res.json();
+    const div = document.getElementById('results');
+
+    if (data.error) {
+        div.innerHTML = `<p style="color:red">${data.error}</p>`;
+        return;
+    }
+
+    if (!data.distances) {
+        div.innerHTML = `<p style="color:red">No distance data received from server.</p>`;
+        return;
+    }
+
+    const format = new Intl.NumberFormat('en-US');
+    div.innerHTML = `<h3>Distances from ZIP ${zip}:</h3>`;
+
+    for (const [body, vals] of Object.entries(data.distances)) {
+        div.innerHTML += `
+        <div class="planet">
+            <strong>${body}</strong><br>
+            ${format.format(vals.miles)} miles<br>
+            ${format.format(vals.km)} kilometers<br>
+            ${vals.au} AU
+        </div>
+        `;
+    }
+    }
+  </script>
+</body>
+</html>

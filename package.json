@@ -1,0 +1,13 @@
+{
+  "name": "planet-distance-app",
+  "version": "1.0.0",
+  "description": "Show simulated distance to planets from your ZIP code",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "node-fetch": "^2.7.0"
+  }
+}
